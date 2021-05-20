@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creer votre communauté{% endblock %}
+
+{% block body %}
+<div class="container">
+<style>
+    #content{
+        display: flex;
+        justify-content: center;
+        flex-direction:row;
+       width: 100%;
+    }
+    #link:hover{
+        border-left: 1px solid gray;
+        padding-left: 6px;
+    }
+</style>
+<center style="display: flex; flex-direction:center; justify-content:center;">
+    <div class="col-md-6">
+        <div class="alert alert-warning col-md-12 col-sm-12  alert-icon alert-dismissible fade in" role="alert">
+            <div class="col-md-2 col-sm-2 icon-wrapper text-center">
+                <img src="{{asset('img/pdp/'~app.user.pdp)}}" alt="" style="width: 50px; height:50px; border-radius:100%;">
+            </div>
+            <div class="col-md-10 col-sm-10">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <p><strong>Avertissement</strong> <br>
+                    Quand vous creer une communaute, vous ne pouvez pas rejoindre une autre communaute 
+                </p>
+            </div>
+        </div>
+    </div>
+
+</center>
+<div class="col-md-8" id="content">
+
+  <div class="col-md-12" id="descrip">
+    <form method="POST" action="{{path('traitement_communaute')}}">
+    <div class="form-element">
+        <div class="col-md-12 padding-0">
+          <div class="col-md-10">
+            <div class="panel form-element-padding">
+              <div class="panel-heading">
+               <h4>communauté de {{app.user.username}}</h4>
+              </div>
+               <div class="panel-body" style="padding-bottom:30px;">
+                <div class="col-md-12">
+                  <div class="form-group"><label class="col-sm-2 control-label text-right">Nom de la communaute</label>
+                     {% if p == 1 %}
+                        <span style="color:red;">Le nom que vous avez utiliser est deja pris. Trouvez un autre nom</span>
+                     {% endif %}
+                    <div class="col-sm-10"><input type="text" class="form-control" name="nom" required><br><br><br></div>
+                  </div>
+
+                 
+                  
+                  <div class="form-group"><label class="col-sm-2 control-label text-right">Reglement interieur</label>
+                    <div class="col-sm-10"><textarea name="reglement" id="" class="form-control" cols="30" rows="10"></textarea><br><br></div>
+                  </div>
+                  
+                  <div class="form-group"><label class="col-sm-2 control-label text-right">Description</label>
+                    <div class="col-sm-10"><textarea name="description" id="" class="form-control" cols="30" rows="10"></textarea></div>
+                  </div>
+
+                </div>
+              </div>
+         </div>
+      </div>
+  </div>
+</div>
+
+<div class="col-md-6">
+<input type="submit" class=" btn btn-gradient btn-lg btn-success" value="Activer ma communaute"/>
+</div>
+
+</form>
+</div>
+
+
+</div>
+<br><br><br><br>
+</div>
+{% endblock %}

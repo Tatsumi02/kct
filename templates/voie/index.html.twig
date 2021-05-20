@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello VoieController!{% endblock %}
+
+{% block body %}
+<div class="container">
+<style>
+    #content{
+        display: flex;
+        justify-content: flex-start;
+        flex-direction:row;
+       
+    }
+    #link:hover{
+        border-left: 1px solid gray;
+        padding-left: 6px;
+    }
+</style>
+<center style="display: flex; flex-direction:center; justify-content:center;">
+    <div class="col-md-6">
+        <div class="alert alert-success col-md-12 col-sm-12  alert-icon alert-dismissible fade in" role="alert">
+            <div class="col-md-2 col-sm-2 icon-wrapper text-center">
+                <img src="{{asset('img/pdp/'~app.user.pdp)}}" alt="" style="width: 50px; height:50px; border-radius:100%;">
+            </div>
+            <div class="col-md-10 col-sm-10">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <p><strong>Bienvenue {{app.user.nom}} {{app.user.prenom}}</strong> <br>
+                    vous êtes maintenant membre de kayconta. Vous devez a présent choisir dans quel univers vous voulez RP dans la liste des univers ci-dessous avant de continuer
+                </p>
+            </div>
+        </div>
+    </div>
+
+</center>
+<div class="col-md-2" id="content">
+<a href="{{path('choix',{'univers_id':1})}}" id="link">
+    <div class="col-md-4">
+      <h1>Univers Naruto</h1>
+      <p>
+          Naruto est un des plus grands univers de jeux de role qui existe.
+          C'est l'unives le plus utiliser pour les RP combats et aventure. Naruto est un manga
+          bien construit et une philosophie hors du commun
+      </p>
+    </div>
+    <div class="col-md-4">
+        <img src="{{asset('img/home/ffff.jpeg')}}" alt="" style="width: 100%;">
+        
+    </div>
+</a>
+</div>
+<br><br><br><br>
+</div>
+{% endblock %}

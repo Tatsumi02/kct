@@ -1,0 +1,37 @@
+{% extends 'baseCommuAdmin.html.twig' %}
+
+{% block title %}Hello CommuAdminHomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    {% if op == 1 %}
+        
+         <h1 class="alert alert-success" id="ms">Opérqtion bien effectuer</h1>
+    
+    {% endif %}
+
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/projet/sweet-edition/src/Controller/CommuAdminHomeController.php'|file_link(0) }}">src/Controller/CommuAdminHomeController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/projet/sweet-edition/templates/commu_admin_home/index.html.twig'|file_link(0) }}">templates/commu_admin_home/index.html.twig</a></code></li>
+    </ul>
+</div>
+<script>
+    $(()=>{
+        t = 20;
+        setInterval(()=>{
+            
+            --t;
+            if(t==0){ $('#ms').hide('slow'); }
+        },150);
+
+    })
+</script>
+{% endblock %}

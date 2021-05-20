@@ -1,0 +1,87 @@
+{% extends 'baseCommuAdmin.html.twig' %}
+
+{% block title %}Hello CommuAdminHomeController!{% endblock %}
+
+{% block body %}
+
+<style>
+    #content{
+        display: flex;
+        justify-content: center;
+        flex-direction:row-reverse;
+    
+    }
+</style>
+
+<div class="col-md-8" id="content">
+
+    <div class="col-md-6">
+        <h2 style="display: inline;">{{commu.nom}} a besoins des sites</h2>
+        <p>
+        Ces site permetrons de situer vos personnages de manière a savoir leur lieu d'origine
+        et de savoir ceux pourquoi ils se battrons et surtout de savoir ce qu'ils défendent
+        </p>
+   </div>
+
+    <div class="col-md-12" id="descrip">
+      <form method="POST" action="{{path('commu_admin_siteTraitement')}}">
+      <div class="form-element">
+          
+          <div class="col-md-10 padding-0">
+            <div class="col-md-12">
+              <div class="panel form-element-padding">
+                <div class="panel-heading">
+                 <h4>creer un site pour <b>{{commu.nom}}</b></h4>
+                </div>
+                 <div class="panel-body" style="padding-bottom:30px;">
+                  <div class="col-md-12">
+                    <div class="form-group"><label class="col-sm-2 control-label text-right">Nom du site</label>
+                      <div class="col-sm-10"><input type="text" class="form-control" name="nom" required><br><br><br></div>
+                    </div>
+  
+                   
+                    
+                    <div class="form-group"><label class="col-sm-2 control-label text-right">Type de site</label>
+                      <div class="col-sm-10">
+                        <select name="type" class="form-control" id="">
+                            <option value="indef">-----</option>
+                            <option value="Village cacher">Village cacher</option>
+                            <option value="Village">Village</option>
+                            <option value="Pays">Pays</option>
+                            <option value="Tribu">Tribu</option>
+                            <option value="Royaume">Royaume</option>
+                            <option value="Ville">Ville</option>
+                        </select>
+                        <br><br></div>
+                    </div>
+
+                    <div class="form-group"><label class="col-sm-2 control-label text-right">Element</label>
+                        <div class="col-sm-10"><input type="text" class="form-control" name="element" placeholder="Ex: du feux, de l'eau, de la brume ... " required><br><br><br></div>
+                    </div>
+                    
+                    <div class="form-group"><label class="col-sm-2 control-label text-right">Description&nbsp;&nbsp;</label>
+                      <div class="col-sm-10"><textarea name="description" id="" class="form-control" cols="30" rows="10"></textarea><br><br><br></div>
+                    </div>
+
+                    <div class="form-group"><label class="col-sm-2 control-label text-right">Histoire</label>
+                        <div class="col-sm-10"><textarea name="histoire" id="" class="form-control" cols="30" rows="10"></textarea></div>
+                      </div>
+  
+                  </div>
+                </div>
+           </div>
+        </div>
+    </div>
+  </div>
+  
+  <div class="col-md-6">
+  <input type="submit" class=" btn btn-gradient btn-lg btn-success" value="Activer le site"/>
+  </div>
+  
+  </form>
+  </div>
+  
+  
+  </div>
+
+{% endblock %}

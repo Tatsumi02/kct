@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}KAYCONTA EDITION{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<style>
+    #content{
+        display: flex;
+        justify-content: center;
+        flex-direction:row
+    
+    }
+</style>
+<div id="content" class="container col-md-12">
+
+    <div class="col-md-12" id="descrip">
+        <form method="POST" action="{{path('traitement_inscription')}}">
+        <div class="form-element">
+            <div class="col-md-12 padding-0">
+              <div class="col-md-8">
+                <div class="panel form-element-padding">
+                  <div class="panel-heading">
+                   <h4>Creation de votre compte kayconta</h4>
+                  </div>
+                   <div class="panel-body" style="padding-bottom:30px;">
+                    <div class="col-md-12">
+                      <div class="form-group"><label class="col-sm-2 control-label text-right">Nom</label>
+                        <div class="col-sm-10"><input type="text" class="form-control" name="nom" required></div>
+                      </div>
+
+                      <div class="form-group"><label class="col-sm-2 control-label text-right">Prenom</label>
+                        <div class="col-sm-10"><input type="text" class="form-control" name="prenom" required></div>
+                      </div>
+
+                      <div class="form-group"><label class="col-sm-2 control-label text-right">Genre</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="genre" required>
+                                <option value="indef">--</option>
+                                <option value="masculin">Masculin</option>
+                                <option value="feminin">Feminin</option>
+                            </select>
+                        </div>
+                      </div>
+                      <br><br>
+                      <div class="form-group"><label class="col-sm-2 control-label text-right">Email</label>
+                        <div class="col-sm-10"><input type="email" class="form-control" name="email" required></div>
+                      </div>
+                      <br>
+                      <div class="form-group"><label class="col-sm-2 control-label text-right">date de naissance</label>
+                        <div class="col-sm-10"><input type="date" class="form-control" name="date" required></div>
+                      </div>
+
+                  </div>
+             </div>
+          </div>
+      </div>
+   </div>
+
+   <div class="form-element">
+    <div class="col-md-12 padding-0">
+      <div class="col-md-8">
+        <div class="panel form-element-padding">
+          <div class="panel-heading">
+           <h4>Informations d'authentification</h4>
+          </div>
+           <div class="panel-body" style="padding-bottom:30px;">
+            <div class="col-md-12">
+              <div class="form-group"><label class="col-sm-2 control-label text-right">Nom d'utilisateur</label>
+                <div class="col-sm-10"><input type="text" class="form-control" name="username" required></div>
+              </div>
+
+              <br><br>
+
+              <div class="form-group"><label class="col-sm-2 control-label text-right">Mot de pass</label>
+                <div class="col-sm-10"><input type="password" class="form-control" name="password" required></div>
+              </div>
+
+              <br><br>
+
+              <div class="form-group"><label class="col-sm-2 control-label text-right">Mot de pass (confimation)</label>
+                <div class="col-sm-10"><input type="password" class="form-control" name="password2" required></div>
+              </div>
+
+             
+          </div>
+     </div>
+  </div>
+</div>
+</div>
+<div class="col-md-6">
+    <input type="submit" class=" btn btn-gradient btn-lg btn-success" value="mon compte"/>
+</div>
+
+</form>
+    </div>
+
+   
+    <button class=" btn btn-circle btn-mn btn-info" value="primary">
+        <span class="fa fa-heart"></span>
+    </button>
+
+</div>
+<br><br><br><br>
+{% endblock %}

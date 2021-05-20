@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello VoieController!{% endblock %}
+
+{% block body %}
+<div class="container">
+<style>
+    #content{
+        display: flex;
+        justify-content: center;
+        flex-direction:row;
+       
+    }
+    #link:hover{
+        border-left: 1px solid gray;
+        padding-left: 6px;
+    }
+</style>
+<center style="display: flex; flex-direction:center; justify-content:center;">
+    <div class="col-md-6">
+        <div class="alert alert-warning col-md-12 col-sm-12  alert-icon alert-dismissible fade in" role="alert">
+            <div class="col-md-2 col-sm-2 icon-wrapper text-center">
+                <img src="{{asset('img/pdp/'~app.user.pdp)}}" alt="" style="width: 50px; height:50px; border-radius:100%;">
+            </div>
+            <div class="col-md-10 col-sm-10">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <p><strong>{{app.user.nom}} {{app.user.prenom}}</strong> <br>
+                    Votre demande a rejoindre une communauté est en attente de validation
+                </p>
+            </div>
+        </div>
+    </div>
+    {% for commu in communautes %}
+</center>
+<div class="col-md-2" id="content">
+<a href="{{path('null_request_commu',{'commu_id':commu.id})}}" class="btn btn-danger">Annuler la demande</a>
+&nbsp;&nbsp;
+<a href="{{path('del_request_commu',{'commu_id':commu.id})}}" class="btn btn-primary" id="creat">Creer votre communauté</a>
+</div>
+
+<div class="col-md-12" style="background-color: white; padding:2%;">
+    <h2>{{commu.nom}}</h2>
+    <p>Vous avez denander a rejoindre la communauté <b>{{commu.nom}}</b>
+    <br> Vous pouriez rejoindre la communaute apres que les admin ont approver votre demande
+    </p>
+</div>
+
+<script>
+    $(()=>{
+        $('#creat').click(()=>{
+            let x = confirm('En creant votre propre communaute, cela va annuler votre demande d\'hadesion a la communaute {{commu.nom}}. \n\n voulez vous annuler la demande pour creer votre propre communaute?');
+            if(x!=true){
+                return false;
+            }else{
+                return true;
+            }
+        })
+    })
+</script>
+{% endfor %}
+
+</div>
+<br><br><br><br>
+{% endblock %}

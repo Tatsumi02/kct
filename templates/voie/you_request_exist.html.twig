@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Faites votre choix et poursuivons{% endblock %}
+
+{% block body %}
+<div class="container">
+<style>
+    #content{
+        display: flex;
+        justify-content: center;
+        flex-direction:row;
+       width: 100%;
+    }
+    #link:hover{
+        border-left: 1px solid gray;
+        padding-left: 6px;
+    }
+</style>
+<center style="display: flex; flex-direction:center; justify-content:center;">
+   
+</center>
+<div class="col-md-12" id="">
+
+   {% for commu in communautes %}
+       <div class="col-md-10" style="background-color: white; padding:2%;">
+           Votre demande d'hadesion a la communaute <b>{{commu.nom}}</b> est encore en cours. <br>
+           Vous pouvez annuler la demande pour pouvoir demander a rejoindre une autre communauté
+           <hr>
+           <a href="{{path('null_request_commu',{'commu_id':commu.id})}}" class="btn btn-danger">annuler la demande chez <b>{{commu.nom}}</b></a>
+       </div>
+   {% endfor %}
+
+</div>
+<br><br><br><br>
+</div>
+{% endblock %}

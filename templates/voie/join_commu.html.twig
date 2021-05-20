@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Faites votre choix et poursuivons{% endblock %}
+
+{% block body %}
+<div class="container">
+<style>
+    #content{
+        display: flex;
+        justify-content:flex-start;
+        flex-direction:row-reverse;
+        flex-wrap: wrap-reverse;
+    }
+    #link:hover{
+        border-left: 1px solid gray;
+        padding-left: 6px;
+    }
+    #com{
+        box-shadow: 0px 0px 4px black;
+        padding: 2%;
+        margin: 2%;
+        background-color: white;
+        background-image: url("{{asset('img/home/wp8813244.jpg')}}");
+        background-size: cover;
+        color: white;
+    }
+</style>
+<center style="display: flex; flex-direction:center; justify-content:center;">
+    <div class="col-md-6">
+        <div class="alert alert-warning col-md-12 col-sm-12  alert-icon alert-dismissible fade in" role="alert">
+            <div class="col-md-2 col-sm-2 icon-wrapper text-center">
+                <img src="{{asset('img/pdp/'~app.user.pdp)}}" alt="" style="width: 50px; height:50px; border-radius:100%;">
+            </div>
+            <div class="col-md-10 col-sm-10">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <p><strong>Les communautés disponibles</strong> <br>
+                    Vous ne pouvez rejoindre qu'une communauté
+                </p>
+            </div>
+        </div>
+    </div>
+
+</center>
+<div class="col-md-12 " id="content">
+
+    {% for commu in communautes %}
+    
+        <div class="col-md-12" id="com">
+            <h3 style="text-shadow: 0px 0px 12px black;">{{commu.nom}}</h3>
+                <hr>
+                <p>
+                    <a href="{{path('send_request',{'commu_id':commu.id})}}" class="btn btn-primary btn-sm">Rejoindre</a>
+                </p>
+
+            <p style="padding: 2%; background:black; opacity:0.7">
+                {{commu.description}}
+            </p>
+            
+        </div>
+    
+    {% endfor %}
+
+</div>
+<br><br><br><br>
+</div>
+{% endblock %}

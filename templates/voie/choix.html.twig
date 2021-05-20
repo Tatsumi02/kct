@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Faites votre choix et poursuivons{% endblock %}
+
+{% block body %}
+<div class="container">
+<style>
+    #content{
+        display: flex;
+        justify-content: flex-start;
+        flex-direction:row-reverse;
+       width: 100%;
+    }
+    #link:hover{
+        border-left: 1px solid gray;
+        padding-left: 6px;
+    }
+</style>
+<center style="display: flex; flex-direction:center; justify-content:center;">
+    <div class="col-md-6">
+        <div class="alert alert-warning col-md-12 col-sm-12  alert-icon alert-dismissible fade in" role="alert">
+            <div class="col-md-2 col-sm-2 icon-wrapper text-center">
+                <img src="{{asset('img/pdp/'~app.user.pdp)}}" alt="" style="width: 50px; height:50px; border-radius:100%;">
+            </div>
+            <div class="col-md-10 col-sm-10">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <p><strong>{{app.user.nom}} {{app.user.prenom}}</strong> <br>
+                    Vous devez choisir si vous voulez créer ou rejoindre une comunauté de Rp 
+                </p>
+            </div>
+        </div>
+    </div>
+
+</center>
+<div class="col-md-5" id="content">
+
+    <div class="col-md-6">
+        <a href="{{path('build_com')}}" class=" btn btn-gradient btn-lg btn-primary"> Créer ma communauté</a>
+    </div>
+
+    <div class="col-md-6">
+        <a href="{{path('join_commu')}}" class=" btn btn-gradient btn-lg btn-warning"> Rejoindre une communauté</a>
+    </div>
+
+</div>
+<br><br><br><br>
+</div>
+{% endblock %}

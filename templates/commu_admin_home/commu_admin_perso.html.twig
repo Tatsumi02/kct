@@ -1,0 +1,79 @@
+{% extends 'baseCommuAdmin.html.twig' %}
+
+{% block title %}Hello CommuAdminHomeController!{% endblock %}
+
+{% block body %}
+
+<style>
+    #content{
+        display: flex;
+        justify-content: center;
+        flex-direction:row-reverse;
+    
+    }
+</style>
+
+<div class="col-md-8" id="content">
+
+    <div class="col-md-6">
+        <h2 style="display: inline;">{{commu.nom}} a besoins des personnages</h2>
+        <p>
+        Vous devew créer des personnages pour agrandir votre communauté. Vous devez associer les bons personnages dans leur site approprié
+        </p>
+   </div>
+
+    <div class="col-md-12" id="descrip">
+      <form method="POST" action="{{path('commu_admin_persoTraitement')}}">
+      <div class="form-element">
+          
+          <div class="col-md-10 padding-0">
+            <div class="col-md-12">
+              <div class="panel form-element-padding">
+                <div class="panel-heading">
+                 <h4>creer un personnage pour <b>{{commu.nom}}</b></h4>
+                </div>
+                 <div class="panel-body" style="padding-bottom:30px;">
+                  <div class="col-md-12">
+                    <div class="form-group"><label class="col-sm-2 control-label text-right">Nom</label>
+                      <div class="col-sm-10"><input type="text" class="form-control" name="nom" required><br><br><br></div>
+                    </div>
+
+                    <div class="form-group"><label class="col-sm-2 control-label text-right">Prenom</label>
+                        <div class="col-sm-10"><input type="text" class="form-control" name="prenom" required><br><br><br></div>
+                    </div>
+
+                    <div class="form-group"><label class="col-sm-2 control-label text-right">Site</label>
+                        <div class="col-sm-10">
+                            
+                                <select name="site" class="form-control" id="">
+                                    <option value="indef">-------</option>
+                                    {% for site in sites %}
+                                        <option value="{{site.id}}">{{site.site}}</option>
+                                    {% endfor %}
+                                </select>
+                        
+                            <br><br><br></div>
+                    </div>
+
+                    <div class="form-group"><label class="col-sm-2 control-label text-right">Liens references</label>
+                        <div class="col-sm-10"><input type="text" placeholder="Ex: wikipedia.com/wiki/naruto" class="form-control" name="ref" required><br><br><br></div>
+                    </div>
+  
+                  </div>
+                </div>
+           </div>
+        </div>
+    </div>
+  </div>
+  
+  <div class="col-md-6">
+  <input type="submit" class=" btn btn-gradient btn-lg btn-success" value="Activer le personnage"/>
+  </div>
+  
+  </form>
+  </div>
+  
+  
+  </div>
+
+{% endblock %}

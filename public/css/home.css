@@ -1,0 +1,13 @@
+.bande{
+    background:url('')
+}
+#content{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction:row
+
+}
+
+.im{
+    
+}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}KAYCONTA EDITION{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div id="content" class="container col-md-12">
+
+    <div class="col-md-8" id="descrip">
+        <h1>Ere de jeux virtuel (jeux de rôles)  </h1>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem sunt optio illo sequi. Quasi animi, aut nam fugiat quod dolore culpa pariatur minus quas architecto? Quia accusantium quidem at repudiandae.</p>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem sunt optio illo sequi. Quasi animi, aut nam fugiat quod dolore culpa pariatur minus quas architecto? Quia accusantium quidem at repudiandae.</p>
+        
+        <br><br><br><br>
+        <hr>
+        <div class="col-md-6">
+            <a href="{{path('inscription')}}" id="but" class=" btn btn-gradient btn-lg btn-primary"> Rejoindre <span id="not"></span></a>
+        </div>
+        <input type="hidden" name="" value="{{asset('img/fancybox_loading.gif')}}" id="jax">
+
+
+        <div class="col-md-6">
+            <input type="button" class=" btn btn-gradient btn-lg btn-success" value="mon compte"/>
+        </div>
+
+    </div>
+
+   
+    <button class=" btn btn-circle btn-mn btn-info" value="primary">
+        <span class="fa fa-heart"></span>
+    </button>
+
+    <div class="col-md-6 im pull-left">
+        <img src="{{asset('img/home/wp7467136.png')}}" alt="" style="width: 100%;">
+    </div>
+   
+</div>
+<br><br><br><br>
+{% endblock %}
