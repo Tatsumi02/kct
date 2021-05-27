@@ -1,0 +1,55 @@
+{% extends 'baseAuth.html.twig' %}
+
+{% block title %}Hello CommuUserController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .parent{
+         display: flex;
+        justify-content:flex-left;
+        flex-direction:row;
+       width: 100%;
+       background:white;
+       padding:2%;
+    }
+</style>
+
+<div class="example-wrapper container">
+    {% for commu in commus %}
+        <h3>vous avez demander a rejoindre la commu <b>{{commu.nom}}</b></h3>
+        <div class="parent">
+          <div class="col-md-4">
+            <img src="{{asset('img/home/wp8813244.jpg')}}" style="width:100%;" />
+            
+          </div>
+          <div style="flex-direction:column;">
+          <h4><b>{{commu.nom}}</b></h4>
+          <p>
+            {{commu.description}}
+          </p>
+          <hr>
+          <p>
+            {{commu.reglement}}
+          </p>
+          </div>
+        </div>
+    <br><br/>
+        <div class="parent">
+          
+          <div style="flex-direction:column;">
+            <p>
+                Si l'auteur de cette communauté met trop de temps à repondre a votre demande, vous pouvez rejoindre une autre communauté pour rapidement faire partie d'une communauté
+                <br/><br/>
+                <a href="{{path('join_commu')}}" class="btn btn-primary btn-gradient btn-lg">Autre communauté</a>
+                          
+            </p>
+          </div>
+        </div>
+
+    {% endfor %}
+    
+    
+</div>
+{% endblock %}

@@ -59,9 +59,8 @@
                      <li>
                       <img src="{{asset('img/157273715_3341398716086537_8896353922764347177_n.jpg')}}" class="" style="width: 100%; height:100%;" alt="user name"/>
                      </li>
-                     <li><a href="#"><span class="fa fa-bolt"></span>Revenir a la communaute</a></li>
-                     <li><a href="#"><span class="fa fa-folder-open-o"></span> Modifie la communaute </a></li>
-                     <li><a href="#"><span class="fa fa-users"></span> gerer les membres </a></li>
+                     <li><a href="#"><span class="fa fa-users"></span> Mon profil </a></li>
+                     <li><a href="#"><span class="fa fa-users"></span> Nous contacter </a></li>
                      <li role="separator" class="divider"></li>
                      <li class="more">
                       <ul>
@@ -100,24 +99,26 @@
                         <p class="animated fadeInDown"><span class="icon-refresh"></span> <b>Best RP Edit</b></p>
 
                         <ul class="nav navbar-nav">
-                          <a href="{{path('commu_admin_site')}}" class="btn btn-primary">Creer des sites</a>
+                          {# <a href="{{path('commu_admin_site')}}" class="btn btn-primary">Creer des sites</a>
                           <a href="{{path('commu_admin_perso')}}" class="btn btn-primary">Creer des personnages</a>
-                          <br><br>
-                          <a href="" class="btn btn-success">Recherche des rolistes</a>
+                          <br><br> #}
+                          <a href="{{path('null_request_commu',{'commu_id':commu.id})}}" class="btn btn-danger">Annuler la demande</a>
                         
                     </div>
                     <div class="col-md-6 col-sm-12">
                       <div class="col-md-6 col-sm-6 text-right" style="padding-left:10px;">
                         
                       </div>
-                        <a href="{{path("membres")}}" class="btn btn-primary">Membres
-                          {% if nb_demande > 0 %}
-                               <span class="badge badge-danger" title="{{nb_demande}} nouveau membres">
-                                  {{nb_demande}}
-                               </span>
-                          {% endif %}
-                        </a>
-                        <a href="" class="btn btn-dark">events</a>            
+                      {% if auteur == 1 %}
+                         <a href="{{path('commu_admin_home')}}" class="btn btn-primary" title="Espace admin de {{commu.nom}}">Espace Admin
+                             {% if nb_demande > 0 %}
+                                 <span class="badge badge-danger" title="{{nb_demande}} demande a rejoindre {{commu.nom}} ">
+                                    {{nb_demande}}
+                                 </span>
+                             {% endif %}
+                         </a>
+                      {% endif %}
+                            
                     </div>
                   </div>                    
                 </div>

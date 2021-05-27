@@ -3,7 +3,28 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+
+<style>
+    #form{
+        display: flex;
+        justify-content:center;
+        flex-direction:column;
+    }
+</style>
+
+<div class="container"  id="form">
+
 <form method="post">
+    <div class="form-element">
+        <div class="col-md-12 padding-0">
+          <div class="col-md-8">
+            <div class="panel form-element-padding">
+              <div class="panel-heading">
+               <h4>Connexion à votre communauté</h4>
+              </div>
+               <div class="panel-body" style="padding-bottom:30px;">
+                <div class="col-md-12">
+
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -14,12 +35,16 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername">Username</label>
+    {# <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1> #}
+    <br>
+    <label for="inputUsername">Nom d'utilisateur</label>
+    <br>
     <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
+    <br><br>
+    <label for="inputPassword">Mot de passe</label>
+    <br>
     <input type="password" name="password" id="inputPassword" class="form-control" required>
-
+    <br><br>
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
@@ -28,15 +53,25 @@
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
         See https://symfony.com/doc/current/security/remember_me.html
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
+       
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" name="_remember_me"> Souviens-toi de moi
+        </label>
+    </div>
+
+    <button class="btn btn-gradient btn-primary" type="submit"> 
+        S'identifier
     </button>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
 </form>
+</div>
 {% endblock %}

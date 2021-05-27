@@ -1,0 +1,39 @@
+{% extends 'baseCommuAdmin.html.twig' %}
+
+{% block title %}Membres de la communauté{% endblock %}
+
+{% block body %}
+
+    <style>
+        .content{
+            display: flex;
+        justify-content:flex-left;
+        flex-direction:row;
+       width: 100%;
+       background:white;
+       padding:2%;
+        }
+
+    </style>
+
+    <div class="container" style="display: flex; flex-direction:column">
+        <div class="men">
+            <a href="" class="btn btn-gradient btn-primary btn-lg">Gerer les membres</a>
+            <a href="" class="btn btn-gradient btn-warning btn-lg">Voir tout les demandes</a>
+        </div>
+
+        <div class="content">
+            
+                {% for demandeur in demandeurs %}
+                
+                   <h3> {{demandeur.nom}} <a href="{{path('accepter_membre',{'commu_id':id_commu,'demandeur_id':demandeur.id})}}" class="badge badge-success">Accepter</a>
+                    <a href="" class="badge badge-danger">Refuse</a>
+                    <a href="" class="badge badge-primary">Profil</a>
+                   </h3>
+                        
+                 {% endfor %}
+                
+        </div>
+
+    </div>
+{% endblock %}

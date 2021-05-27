@@ -13,6 +13,8 @@ use App\Entity\Communaute;
 use App\Repository\CommunauteRepository;
 use App\Entity\DemandeCommu;
 use App\Repository\DemandeCommuRepository;
+use App\Entity\MembreCommu;
+use App\Repository\MembreCommuRepository;
 
 
 
@@ -27,9 +29,11 @@ class VoieController extends AbstractController
     {
 
         
+        
         return $this->render('voie/index.html.twig', [
             'controller_name' => 'VoieController',
         ]);
+
     }
 
     /**
@@ -37,7 +41,26 @@ class VoieController extends AbstractController
      */
     public function choix($univers_id){
 
-        return $this->render('voie/choix.html.twig');
+        $repository = $this -> getDoctrine() -> getRepository(Communaute::class);
+        $creat_commus = $repository -> findBy(['createur_id'=>$this->getUser()->getId()]);
+
+        $repository = $this -> getDoctrine() -> getRepository(DemandeCommu::class);
+        $request_commus = $repository -> findBy(['user_id'=>$this->getUser()->getId()]);
+        $test1 = 0;
+        $test2 = 0;
+        foreach($creat_commus as $cc){
+            $test1++;
+        }
+        foreach($request_commus as $cc){
+            $test2++;
+        }
+
+        if($test1 == 0 || $test2 == 0){
+            return $this->render('voie/choix.html.twig');
+        }else{
+          
+          return $this->redirectToRoute('look_up');
+        }
     }
 
     /**
@@ -46,7 +69,22 @@ class VoieController extends AbstractController
     public function build_com(Request $request){
         $p = 0;
         $p = $request->get('p');
-        return $this->render('voie/build_com.html.twig',['p'=>$p]);
+
+        // nous allons verifier que l'utilisateur n'a pas deja une communaute ou pas
+        $repository = $this -> getDoctrine() -> getRepository(Communaute::class);
+        $commus = $repository -> findBy(['createur_id'=>$this->getUser()->getId()]);
+
+        $have_commu = 0;
+        foreach($commus as $com){
+            $have_commu++;
+        } 
+
+        if($have_commu == 0){
+            return $this->render('voie/build_com.html.twig',['p'=>$p]);
+        }else{
+            return new Response('Vous avez deja une communaute');
+        }
+
     }
 
     /**
@@ -81,7 +119,30 @@ class VoieController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($commu);
         $em->flush();
+       
 
+        //enregistrons aussi l'auteur de la communaute comme membre de sa communaute
+        // nous allons dabord recuperer l'id de la communaute que l'utilisateur vient de creer
+        $commu_id = 0;
+        $repository = $this -> getDoctrine() -> getRepository(Communaute::class);
+        $createurs = $repository -> findBy(['createur_id'=>$this->getUser()->getId(),]);
+        
+        //on va parcourir le tableau pour recuperer cet id
+        foreach($createurs as $crea){
+            $commu_id = $crea->getId(); //on recupere l'id
+        }
+
+        $membreCommu = new MembreCommu();
+         $membreCommu->setCommuId($commu_id);
+         $membreCommu->setMembreId($this->getUser()->getId());
+         $membreCommu->setDateAjout(new \Datetime());
+         $membreCommu->setEtat('actif');
+
+         $em = $this->getDoctrine()->getManager();
+         $em->persist($membreCommu);
+         $em->flush();
+
+        //redirigeons le vers son tableau de bord d'administration
         return $this->redirectToRoute('commu_admin_home');
 
     }else{
@@ -110,10 +171,13 @@ class VoieController extends AbstractController
 
         if($compt != 0){ $isExist = true; }
         if($isExist == true ){ return $this->redirectToRoute('you_request_exist',['commu_id'=>$commu_id]); }
-
+        
+        
         return $this->render('voie/join_commu.html.twig',[
             'communautes' => $communautes,
         ]);
+
+        
     }
 
     /**
